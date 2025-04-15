@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jumping Head</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom, #f4f4f4, #bce0fd);
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .head {
+      font-size: 100px;
+      position: relative;
+      bottom: 0;
+      transition: bottom 0.2s ease-out;
+    }
+
+    .jump {
+      animation: jumpAnim 0.5s ease-out;
+    }
+
+    @keyframes jumpAnim {
+      0% { bottom: 0; }
+      40% { bottom: 150px; }
+      100% { bottom: 0; }
+    }
+
+    .instructions {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 1.2em;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="instructions">Press <strong>Spacebar</strong> to make the head jump!</div>
+  <div class="head" id="head">🧠</div>
+
+  <script>
+    const head = document.getElementById('head');
+
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        if (!head.classList.contains('jump')) {
+          head.classList.add('jump');
+          setTimeout(() => {
+            head.classList.remove('jump');
+          }, 500); // Same duration as the CSS animation
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
